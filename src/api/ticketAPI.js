@@ -181,4 +181,14 @@ const updateTicketApi = (data) => {
   });
 };
 
-export { getTicketsApi, updateTicketApi };
+const addTicketApi = (data) => {
+  let res = { status: 404, data: {} };
+
+  return new Promise((resolve, reject) => {
+    res.status = 200;
+    res.data = data;
+    setTimeout(() => resolve(res), 500);
+  });
+};
+
+export { getTicketsApi, updateTicketApi, addTicketApi };

@@ -94,6 +94,9 @@ function TableTickets({ rows }) {
     <>
       <Card>
         <CardContent>
+          <Typography variant="h5" sx={{ mb: 3 }}>
+            <b>List Ticket</b>
+          </Typography>
           <Grid container spacing={2}>
             <Grid item xs={12} lg={6}>
               <FormControl fullWidth>
