@@ -9,7 +9,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import FormSearchTask from "../form/FormSearchTask";
 import Notification from "./Notification";
@@ -17,7 +16,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { Avatar } from "@mui/material";
 
 function Navbar({ drawerWidth, handleDrawerToggle }) {
-  const { avatar } = useAuth();
+  const { avatar, logout } = useAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -58,8 +57,7 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
     </Menu>
   );
 
@@ -93,7 +91,7 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
         >
           <Avatar alt="Profile Pict" src={avatar} />
         </IconButton>
-        <p>Profile</p>
+        <p>Logout</p>
       </MenuItem>
     </Menu>
   );
