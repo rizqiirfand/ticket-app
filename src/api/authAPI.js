@@ -3,11 +3,18 @@ const loginWithEmailApi = (email, password) => {
   return new Promise((resolve, reject) => {
     let valid = { email: false, password: false };
     if (email === "admin") valid.email = true;
-    if (email === "12345678") valid.password = true;
+    if (password === "12345678") valid.password = true;
+
+    let res = { status: 404, data: {} };
+
     if (Object.entries(valid).every((v) => v[1] === true)) {
-      setTimeout(resolve({ role: "admin", token: "token-admin" }), 2000);
+      res.status = 200;
+      res.data = { role: "admin", token: "token-admin" };
+      setTimeout(() => resolve(res), 2000);
     } else {
-      setTimeout(reject(valid), 2000);
+      res.status = 401;
+      res.data = valid;
+      setTimeout(() => reject(res), 2000);
     }
   });
 };

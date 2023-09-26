@@ -8,10 +8,15 @@ export const useAuth = () => {
 
   const loginWithEmail = (email, password) => {
     dispatch({ type: "SET_LOADING", payload: true });
-    loginWithEmailApi(email, password)
-      .then((res) => dispatch({ type: "SET_AUTH", payload: { isLogin: true, role: res.role } }))
-      .catch(() => {
+    return loginWithEmailApi(email, password)
+      .then((res) => {
+        sessionStorage.setItem("token", res.data.token);
+        dispatch({ type: "SET_AUTH", payload: { isLogin: true, role: res.data.role } });
+        return res;
+      })
+      .catch((err) => {
         dispatch({ type: "SET_LOADING", payload: false });
+        return err;
       });
   };
 
@@ -31,6 +36,7 @@ export const useAuth = () => {
     isLogin: state?.isLogin,
     authLoad: state?.authLoad,
     loginWithEmail,
+    loginWithToken,
     logout,
   };
 };

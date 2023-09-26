@@ -1,16 +1,7 @@
 import React from "react";
-import {
-  useNavigate,
-  useLocation,
-  BrowserRouter,
-  Routes,
-  Route,
-  Outlet,
-  Navigate,
-} from "react-router-dom";
-import App from "./App";
+import { useLocation, BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
-import { AuthContext, AuthProvider } from "./context/auth/authContext";
+import { AuthProvider } from "./context/auth/authContext";
 import Login from "./page/Login";
 
 const Homepage = () => <div>Homepage</div>;
@@ -37,7 +28,6 @@ function AppRouter() {
         <Routes>
           {/* Public Route */}
           <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
           {/* Admin Route */}
           <Route element={<PrivateRoute allowedRoles={["admin"]} />}>

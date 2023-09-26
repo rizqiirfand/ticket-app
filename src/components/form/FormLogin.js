@@ -1,13 +1,31 @@
-import { Box, Button, IconButton, TextField } from "@mui/material";
+import { Box, Button, CircularProgress, IconButton, TextField } from "@mui/material";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import React from "react";
 import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 function FormLogin() {
-  const [form, setForm] = React.useState({ email: "", password: "" });
-  const [error, setError] = React.useState({ email: false, password: false });
   const { loginWithEmail, authLoad } = useAuth();
+  const navigate = useNavigate();
 
+  // state for handling form and error value
+  const [form, setForm] = React.useState({ email: "", password: "" });
+  const [error, setError] = React.useState({
+    email: { state: false, message: "" },
+    password: { state: false, message: "" },
+  });
+
+  // form validation function
+  const validate = (field) => {
+    const { email, password } = field;
+    let err = { email: { state: false, message: "" }, password: { state: false, message: "" } };
+    if (email.length === 0) err.email = { state: true, message: "Field Required" };
+    if (password.length < 8) err.password = { state: true, message: "Input Minimum 8 character" };
+    setError(err);
+    return Object.entries(err).every((v) => v[1].state === false);
+  };
+
+  // handling onchange input to update state
   const onChange = (e) => {
     const { name, value } = e.target;
     const field = { ...form, [name]: value };
@@ -15,32 +33,37 @@ function FormLogin() {
     setForm(field);
   };
 
-  const validate = (field) => {
-    const { email, password } = field;
-    let err = { email: false, password: false };
-    if (email.length === 0) err.email = true;
-    if (password.length < 8) err.password = true;
-    setError(err);
-    return Object.entries(err).every((v) => v[1] === false);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (validate(form))
+      loginWithEmail(form.email, form.password).then((res) => {
+        const { status, data } = res;
+        if (status === 200) {
+          navigate("/homepage");
+        } else if (status === 401) {
+          const isValid = data;
+          let err = { email: false, password: false };
+          if (!isValid.email) err.email = { state: true, message: "Wrong Email" };
+          if (!isValid.password) err.password = { state: true, message: "Wrong Password" };
+          setError(err);
+        }
+      });
   };
 
-  const onSubmit = () => {
-    if (validate(form)) loginWithEmail(form.email, form.password);
-  };
-
+  // state handling for show or hide password
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
   return (
-    <>
+    <form onSubmit={onSubmit}>
       <Box sx={{ my: "1rem" }}>
         <TextField
           id="form-email"
           label="Email"
-          error={error.email}
-          helperText={"Field Required"}
+          error={error.email.state}
+          helperText={error.email.message}
           name="email"
           onChange={onChange}
           required
@@ -53,8 +76,8 @@ function FormLogin() {
           id="form-password"
           label="Password"
           name="password"
-          error={error.password}
-          helperText={"Minimum Input 8 Character"}
+          error={error.password.state}
+          helperText={error.password.message}
           variant="standard"
           onChange={onChange}
           type={showPassword ? "text" : "password"}
@@ -74,11 +97,11 @@ function FormLogin() {
         />
       </Box>
       <Box sx={{ mt: "3rem", textAlign: "right" }}>
-        <Button variant="contained" type="submit" onClick={onSubmit}>
-          {authLoad ? "loading" : "Login"}
+        <Button variant="contained" type="submit" disabled={authLoad}>
+          {authLoad ? <CircularProgress size={20} /> : "Login"}
         </Button>
       </Box>
-    </>
+    </form>
   );
 }
 
