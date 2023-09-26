@@ -13,7 +13,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import LogoHorizontal from "../logo/LogoHorizontal";
-import Navbar from "./Nabvar";
+import Navbar from "./Navbar";
 import { navigation } from "../../configs/navigationConfig";
 import Icon from "@mui/material/Icon";
 import { useAuth } from "../../hooks/useAuth";

@@ -46,7 +46,7 @@ function Overview() {
           <SkeletonOverview />
         ) : (
           <Grid container spacing={2}>
-            <Grid item xs={3}>
+            <Grid item xs={12} lg={3}>
               {/* Unresolved */}
               <CardWithNumber
                 icon={<HourglassDisabled sx={{ fontSize: "24pt" }} />}
@@ -55,7 +55,7 @@ function Overview() {
                 color={"primary.dark"}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={12} lg={3}>
               {/* Overview */}
               <CardWithNumber
                 icon={<PanoramaFishEye sx={{ fontSize: "24pt" }} />}
@@ -64,7 +64,7 @@ function Overview() {
                 color={"success.dark"}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={12} lg={3}>
               {/* Open */}
               <CardWithNumber
                 icon={<ImportContacts sx={{ fontSize: "24pt" }} />}
@@ -73,7 +73,7 @@ function Overview() {
                 color={"info.dark"}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={12} lg={3}>
               {/* Onhold */}
               <CardWithNumber
                 icon={<HourglassBottom sx={{ fontSize: "24pt" }} />}
@@ -85,10 +85,10 @@ function Overview() {
             <Grid item xs={12}>
               <CardWithChart data={data.ticket} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} lg={6}>
               <CardUnresolved data={data.unresolved} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} lg={6}>
               <CardTasks data={data.latest_task} />
             </Grid>
           </Grid>
