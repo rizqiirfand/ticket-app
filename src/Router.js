@@ -3,9 +3,9 @@ import { useLocation, BrowserRouter, Routes, Route, Outlet, Navigate } from "rea
 import { useAuth } from "./hooks/useAuth";
 import { AuthProvider } from "./context/auth/authContext";
 import Login from "./page/Login";
+import Tickets from "./page/Tickets";
+import Overview from "./page/Overview";
 
-const Homepage = () => <div>Homepage</div>;
-const Events = () => <div>Event</div>;
 const Custom404 = () => <div>Error Page 404</div>;
 const Unauthorized = () => <div>Unauthorized</div>;
 
@@ -31,8 +31,8 @@ function AppRouter() {
           <Route path="/unauthorized" element={<Unauthorized />} />
           {/* Admin Route */}
           <Route element={<PrivateRoute allowedRoles={["admin"]} />}>
-            <Route path="/homepage" component={<Homepage />} />
-            <Route path="/events" element={<Events />} />
+            <Route path="/overview" element={<Overview />} />
+            <Route path="/tickets" element={<Tickets />} />
           </Route>
           <Route path="*" element={<Custom404 />} />
         </Routes>

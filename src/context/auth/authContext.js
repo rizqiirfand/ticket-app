@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useMemo } from "react";
 
-const initialAuthState = { role: "", isLogin: false, authLoad: false };
+const initialAuthState = { role: "admin", isLogin: false, authLoad: false };
 
 export const AuthReducer = (state, action) => {
   switch (action.type) {

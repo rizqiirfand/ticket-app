@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 
-import Logo from "../components/font/Logo";
+import Logo from "../components/logo/Logo";
 import FormLogin from "../components/form/FormLogin";
 
 export default function Login() {

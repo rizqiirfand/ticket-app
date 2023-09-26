@@ -39,7 +39,7 @@ function FormLogin() {
       loginWithEmail(form.email, form.password).then((res) => {
         const { status, data } = res;
         if (status === 200) {
-          navigate("/homepage");
+          navigate("/overview");
         } else if (status === 401) {
           const isValid = data;
           let err = { email: false, password: false };
