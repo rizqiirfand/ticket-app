@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useMemo } from "react";
 
-const initialTicketState = { data: [] };
+const initialTicketState = [];
 
 export const TicketReducer = (state, action) => {
   switch (action.type) {
