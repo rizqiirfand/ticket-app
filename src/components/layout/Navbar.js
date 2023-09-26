@@ -14,6 +14,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import FormSearchTask from "../form/FormSearchTask";
+import Notification from "./Notification";
 
 function Navbar({ drawerWidth, handleDrawerToggle }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -79,12 +80,7 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
+        <Notification />
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -120,14 +116,13 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
           >
             <MenuIcon />
           </IconButton>
+
+          {/* Search Input */}
           <FormSearchTask />
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <Notification />
             <IconButton
               size="large"
               edge="end"

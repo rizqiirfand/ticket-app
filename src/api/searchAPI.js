@@ -26,7 +26,6 @@ const searchTaskApi = (text) => {
     ];
 
     const result = tasks.filter((task) => task.title.toLowerCase().includes(text.toLowerCase()));
-    console.log(result);
     res.status = 200;
     res.data = result;
     setTimeout(() => resolve(result), 500);
