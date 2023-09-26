@@ -20,11 +20,12 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import { updateTicketApi } from "../../api/ticketAPI";
+import { useNavigate } from "react-router-dom";
 
-function TableTickets({ rows }) {
+function TableTickets({ rows, updateStatus }) {
   const [data, setData] = React.useState(rows);
   const [loading, setLoading] = React.useState(false);
+  const navigate = useNavigate();
 
   // PAGINATION
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -68,11 +69,7 @@ function TableTickets({ rows }) {
   const Status = ({ id, status }) => {
     const onAccept = (state) => {
       setLoading(true);
-      let temp = data;
-      temp[temp.findIndex((dt) => dt.id === id)].status = state;
-      updateTicketApi(temp)
-        .then((res) => setData(res.data))
-        .finally(() => setLoading(false));
+      updateStatus(id, state).finally(() => setLoading(false));
     };
     return status === null ? (
       <>
@@ -134,6 +131,7 @@ function TableTickets({ rows }) {
                 <TableCell>Priority</TableCell>
                 <TableCell>Date</TableCell>
                 <TableCell>Status</TableCell>
+                <TableCell>View</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -146,6 +144,9 @@ function TableTickets({ rows }) {
                   <TableCell>{row.date.toLocaleDateString("en-US")}</TableCell>
                   <TableCell>
                     <Status id={row.id} status={row.status} />
+                  </TableCell>
+                  <TableCell>
+                    <Button onClick={() => navigate("/tickets/" + row.id)}>View</Button>
                   </TableCell>
                 </TableRow>
               ))}

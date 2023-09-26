@@ -4,15 +4,12 @@ import { CircularProgress, Toolbar, Typography } from "@mui/material";
 import { addTicketApi, getTicketsApi } from "../api/ticketAPI";
 import TableTickets from "../components/table/TableTickets";
 import FormAddTicket from "../components/form/FormAddTicket";
+import { useTicket } from "../hooks/useTicket";
 
 function Tickets() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const getTickets = () =>
-    getTicketsApi().then((res) => {
-      if (res.status === 200) setData(res.data);
-      setLoading(false);
-    });
+  const { tickets, updateStatus, getTickets } = useTicket();
   const addTickets = (formData) => {
     setLoading(true);
     const sendData = {
@@ -27,7 +24,7 @@ function Tickets() {
     });
   };
   useEffect(() => {
-    getTickets();
+    getTickets().then(() => setLoading(false));
   }, []);
 
   return (
@@ -35,7 +32,11 @@ function Tickets() {
       <Layout>
         <Toolbar />
         <FormAddTicket onSave={addTickets} />
-        {loading ? <CircularProgress /> : <TableTickets rows={data} />}
+        {loading ? (
+          <CircularProgress />
+        ) : (
+          <TableTickets rows={tickets} updateStatus={updateStatus} />
+        )}
       </Layout>
     </div>
   );
