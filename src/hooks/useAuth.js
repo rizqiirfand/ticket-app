@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { loginWithEmailApi } from "../api/authAPI";
+import { loginWithEmailApi, loginWithTokenApi } from "../api/authAPI";
 import { AuthContext } from "../context/auth/authContext";
 
 export const useAuth = () => {
@@ -20,14 +20,23 @@ export const useAuth = () => {
       });
   };
 
-  const loginWithToken = (email, password) => {
-    dispatch({ type: "SET_LOADING" });
-    loginWithEmailApi(email, password)
-      .then(() => alert("success"))
-      .catch(() => alert("fail"));
+  const loginWithToken = (token) => {
+    dispatch({ type: "SET_LOADING", payload: true });
+    return loginWithTokenApi(token)
+      .then((res) => {
+        sessionStorage.setItem("token", res.data.token);
+        dispatch({ type: "SET_AUTH", payload: { isLogin: true, role: res.data.role } });
+        return res;
+      })
+      .catch((err) => {
+        dispatch({ type: "SET_LOADING", payload: false });
+        logout();
+        return err;
+      });
   };
 
   const logout = () => {
+    localStorage.removeItem("token");
     dispatch({ type: "UNSET_AUTH" });
   };
 
