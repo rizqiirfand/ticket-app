@@ -7,21 +7,11 @@ import FormAddTicket from "../components/form/FormAddTicket";
 import { useTicket } from "../hooks/useTicket";
 
 function Tickets() {
-  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { tickets, updateStatus, getTickets } = useTicket();
-  const addTickets = (formData) => {
+  const { tickets, addTickets, updateStatus, getTickets } = useTicket();
+  const addTicket = (sendData) => {
     setLoading(true);
-    const sendData = {
-      ...formData,
-      status: null,
-      id: data.length + 1,
-      date: new Date(formData.date),
-    };
-    addTicketApi(sendData).then((res) => {
-      if (res.status === 200) setData((prev) => [res.data, ...prev]);
-      setLoading(false);
-    });
+    addTickets(sendData).then(() => setLoading(false));
   };
   useEffect(() => {
     getTickets().then(() => setLoading(false));
@@ -31,7 +21,7 @@ function Tickets() {
     <div>
       <Layout>
         <Toolbar />
-        <FormAddTicket onSave={addTickets} />
+        <FormAddTicket onSave={addTicket} />
         {loading ? (
           <CircularProgress />
         ) : (

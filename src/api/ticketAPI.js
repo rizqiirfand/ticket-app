@@ -160,31 +160,38 @@ const ticket = [
     date: new Date("2023-12-20"),
   },
 ];
-const getTicketsApi = () => {
+const getTicketsApi = (ticketContext) => {
+  // using parameter ticketContext because new ticket added by user only can save on context
   let res = { status: 404, data: {} };
-
+  function merge(a, b, prop) {
+    var reduced = a.filter((aitem) => !b.find((bitem) => aitem[prop] === bitem[prop]));
+    return reduced.concat(b);
+  }
   return new Promise((resolve, reject) => {
     res.status = 200;
-    res.data = ticket;
+    res.data = merge(ticket, ticketContext, "id");
     setTimeout(() => resolve(res), 500);
   });
 };
 
-const getTicketsByIdApi = (id) => {
+const getTicketsByIdApi = (id, ticketContext) => {
+  // using parameter ticketContext because new ticket added by user only can save on context
   let res = { status: 404, data: {} };
 
   return new Promise((resolve, reject) => {
     res.status = 200;
-    res.data = ticket[ticket.findIndex((tick) => tick.id === id)];
+    res.data = ticketContext.find((tick) => tick.id === id);
     setTimeout(() => resolve(res), 500);
   });
 };
 
-const updateTicketApi = (id, status) => {
+const updateTicketApi = (id, status, ticketContext) => {
+  // using parameter ticketContext because new ticket added by user only can save on context
+
   let res = { status: 404, data: {} };
 
   return new Promise((resolve, reject) => {
-    let data = ticket[ticket.findIndex((tick) => tick.id === id)];
+    let data = ticketContext.find((tick) => tick.id === id);
     data.status = status;
     res.status = 200;
     res.data = data;
@@ -197,7 +204,12 @@ const addTicketApi = (data) => {
 
   return new Promise((resolve, reject) => {
     res.status = 200;
-    res.data = data;
+    res.data = {
+      ...data,
+      status: null,
+      id: (ticket.length + 1).toString(),
+      date: new Date(data.date),
+    };
     setTimeout(() => resolve(res), 500);
   });
 };

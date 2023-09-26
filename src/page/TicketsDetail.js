@@ -18,16 +18,18 @@ import { useTicket } from "../hooks/useTicket";
 function TicketsDetail() {
   const [ticket, setTicket] = useState({});
   const [loading, setLoading] = useState(true);
-  const { updateStatus } = useTicket();
+  const { getTicketById, updateStatus } = useTicket();
   const { id } = useParams();
   const navigate = useNavigate();
   const getTicketsById = () =>
-    getTicketsByIdApi(id)
+    getTicketById(id)
       .then((res) => setTicket(res.data))
       .finally(() => setLoading(false));
+
   useEffect(() => {
     getTicketsById();
   }, []);
+
   const Status = ({ id, status }) => {
     const onAccept = (state) => {
       setLoading(true);
