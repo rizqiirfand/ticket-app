@@ -5,18 +5,19 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 
-import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import FormSearchTask from "../form/FormSearchTask";
 import Notification from "./Notification";
+import { useAuth } from "../../hooks/useAuth";
+import { Avatar } from "@mui/material";
 
 function Navbar({ drawerWidth, handleDrawerToggle }) {
+  const { avatar } = useAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -90,7 +91,7 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <Avatar alt="Profile Pict" src={avatar} />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -132,7 +133,7 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <Avatar alt="Profile Pict" src={avatar} />
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>

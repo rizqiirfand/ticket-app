@@ -11,7 +11,10 @@ export const useAuth = () => {
     return loginWithEmailApi(email, password)
       .then((res) => {
         sessionStorage.setItem("token", res.data.token);
-        dispatch({ type: "SET_AUTH", payload: { isLogin: true, role: res.data.role } });
+        dispatch({
+          type: "SET_AUTH",
+          payload: { isLogin: true, role: res.data.role, avatar: res.data.avatar },
+        });
         return res;
       })
       .catch((err) => {
@@ -25,7 +28,10 @@ export const useAuth = () => {
     return loginWithTokenApi(token)
       .then((res) => {
         sessionStorage.setItem("token", res.data.token);
-        dispatch({ type: "SET_AUTH", payload: { isLogin: true, role: res.data.role } });
+        dispatch({
+          type: "SET_AUTH",
+          payload: { isLogin: true, role: res.data.role, avatar: res.data.avatar },
+        });
         return res;
       })
       .catch((err) => {
@@ -41,6 +47,7 @@ export const useAuth = () => {
   };
 
   return {
+    avatar: state?.avatar,
     role: state?.role,
     isLogin: state?.isLogin,
     authLoad: state?.authLoad,

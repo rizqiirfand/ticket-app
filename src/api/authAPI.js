@@ -1,4 +1,9 @@
-const account = { email: "admin@mail.com", password: "12345678", role: "admin" };
+const account = {
+  email: "admin@mail.com",
+  password: "12345678",
+  role: "admin",
+  avatar: "https://en.wikipedia.org/wiki/Candi_of_Indonesia#/media/File:Stupa_Borobudur.jpg",
+};
 const token = "token-admin";
 
 const loginWithEmailApi = (email, password) => {
@@ -11,7 +16,7 @@ const loginWithEmailApi = (email, password) => {
 
     if (Object.entries(valid).every((v) => v[1] === true)) {
       res.status = 200;
-      res.data = { role: account.role, token };
+      res.data = { role: account.role, token, avatar: account.avatar };
       setTimeout(() => resolve(res), 2000);
     } else {
       res.status = 401;
