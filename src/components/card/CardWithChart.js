@@ -11,8 +11,11 @@ import {
   Legend,
 } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
+import { Trans, useTranslation } from "react-i18next";
+import { t } from "i18next";
 
 function CardWithChart({ data }) {
+  const { t } = useTranslation();
   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
   return (
     <Card sx={{ display: "flex" }}>
@@ -27,7 +30,7 @@ function CardWithChart({ data }) {
               },
               title: {
                 display: true,
-                text: "Ticket Graph in 1 year",
+                text: t("chart_title"),
               },
             },
           }}

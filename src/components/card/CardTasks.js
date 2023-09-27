@@ -4,17 +4,18 @@ import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import { List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Trans } from "react-i18next";
 
 function CardTasks({ data }) {
   return (
     <Card>
       <CardHeader
-        title="Tickets"
-        subheader="latest tickets"
+        title={<Trans i18nKey={"Tasks"} />}
+        subheader={<Trans i18nKey={"latest tickets"} />}
         action={
           <Link to="/overview">
             <Typography variant="caption" color={"primary"} gutterBottom sx={{ mx: 2, mt: -4 }}>
-              view details
+              <Trans i18nKey={"view details"} />
             </Typography>
           </Link>
         }

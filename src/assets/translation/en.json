@@ -7,8 +7,14 @@
     "password":"Password",
     "Overview":"Overview",
     "Ticket":"Ticket",
+    "Tasks":"Tasks",
     "Add Ticket":"Add Ticket",
     "form.error.password":"Input Minimum 8 character",
     "form.error.email_wrong":"Wrong Email",
-    "form.error.password_wrong":"Wrong Password"
+    "form.error.password_wrong":"Wrong Password",
+    "chart_title":"Ticket Graph in 1 year",
+    "Unresolved Tickets":"Unresolved Tiket",
+    "view details":"View Details",
+    "latest unresolved":"latest unresolved",
+    "latest tickets":"latest unresolved"
 }

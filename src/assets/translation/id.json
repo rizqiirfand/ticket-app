@@ -7,8 +7,14 @@
     "password":"Password",
     "Overview":"Halaman Utama",
     "Ticket":"Tiket",
+    "Tasks":"Tugas",
     "Add Ticket":"Buat Tiket",
     "form.error.password":"Input Minimal 8 karakter",
     "form.error.email_wrong":"Email Salah",
-    "form.error.password_wrong":"Password Salah"
+    "form.error.password_wrong":"Password Salah",
+    "chart_title":"Grafik Tiket dalam 1 tahun",
+    "Unresolved Tickets":"Unresolved Tiket",
+    "view details":"Lihat detail",
+    "latest unresolved":"Unresolved terbaru",
+    "latest tickets":"tugas terbaru"
 }
