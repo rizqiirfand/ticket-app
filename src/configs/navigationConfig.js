@@ -17,7 +17,7 @@ const guest = [
   {
     title: "Add Ticket",
     link: "/tickets/add",
-    icon: "",
+    icon: <ConfirmationNumberRounded />,
   },
 ];
 

@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { loginWithEmailApi, loginWithTokenApi } from "../api/authAPI";
 import { AuthContext } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
   const [state, dispatch] = context;
+  const navigate = useNavigate();
 
   const loginWithEmail = (email, password) => {
     dispatch({ type: "SET_LOADING", payload: true });
@@ -44,6 +46,7 @@ export const useAuth = () => {
   const logout = () => {
     localStorage.removeItem("token");
     dispatch({ type: "UNSET_AUTH" });
+    navigate("/");
   };
 
   return {

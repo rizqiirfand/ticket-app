@@ -14,9 +14,10 @@ import FormSearchTask from "../form/FormSearchTask";
 import Notification from "./Notification";
 import { useAuth } from "../../hooks/useAuth";
 import { Avatar } from "@mui/material";
+import { showNotification } from "../../utils/Permission";
 
 function Navbar({ drawerWidth, handleDrawerToggle }) {
-  const { avatar, logout } = useAuth();
+  const { role, avatar, logout } = useAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -57,7 +58,7 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={logout}>Logout</MenuItem>
     </Menu>
   );
 
@@ -78,10 +79,12 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <Notification />
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      {showNotification(role) && (
+        <MenuItem>
+          <Notification />
+        </MenuItem>
+      )}
+      <MenuItem onClick={logout}>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -121,7 +124,7 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Notification />
+            {showNotification(role) && <Notification />}
             <IconButton
               size="large"
               edge="end"

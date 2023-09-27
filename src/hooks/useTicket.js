@@ -16,7 +16,7 @@ export const useTicket = () => {
   };
 
   const addTickets = (data) => {
-    return addTicketApi(data).then((res) => {
+    return addTicketApi(data, state).then((res) => {
       dispatch({ type: "UPDATE_TICKET", payload: [res.data, ...state] });
     });
   };

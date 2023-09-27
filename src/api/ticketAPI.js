@@ -199,7 +199,7 @@ const updateTicketApi = (id, status, ticketContext) => {
   });
 };
 
-const addTicketApi = (data) => {
+const addTicketApi = (data, ticketContext) => {
   let res = { status: 404, data: {} };
 
   return new Promise((resolve, reject) => {
@@ -207,7 +207,7 @@ const addTicketApi = (data) => {
     res.data = {
       ...data,
       status: null,
-      id: (ticket.length + 1).toString(),
+      id: (ticketContext.length + 1).toString(),
       date: new Date(data.date),
     };
     setTimeout(() => resolve(res), 500);
