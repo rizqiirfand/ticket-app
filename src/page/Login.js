@@ -8,6 +8,7 @@ import Logo from "../components/logo/Logo";
 import FormLogin from "../components/form/FormLogin";
 import { Trans, useTranslation } from "react-i18next";
 import SwicthLang from "../components/switch/SwicthLang";
+import SwitchTheme from "../components/switch/SwitchTheme";
 
 export default function Login() {
   return (
@@ -22,7 +23,10 @@ export default function Login() {
       }}
     >
       <Card sx={{ width: "20rem", p: "1rem" }}>
-        <SwicthLang />
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <SwicthLang />
+          <SwitchTheme />
+        </Box>
         <CardContent>
           <Logo />
           <Box sx={{ my: "1rem", textAlign: "center" }}>

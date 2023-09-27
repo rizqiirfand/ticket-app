@@ -16,6 +16,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { Avatar } from "@mui/material";
 import { showNotification } from "../../utils/Permission";
 import SwicthLang from "../switch/SwicthLang";
+import SwitchTheme from "../switch/SwitchTheme";
 
 function Navbar({ drawerWidth, handleDrawerToggle }) {
   const { role, avatar, logout } = useAuth();
@@ -80,6 +81,9 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <MenuItem>
+        <SwicthLang /> <SwitchTheme />
+      </MenuItem>
       {showNotification(role) && (
         <MenuItem>
           <Notification />
@@ -96,9 +100,6 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
           <Avatar alt="Profile Pict" src={avatar} />
         </IconButton>
         <p>Logout</p>
-      </MenuItem>
-      <MenuItem>
-        <SwicthLang />
       </MenuItem>
     </Menu>
   );
@@ -127,9 +128,12 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
           <FormSearchTask />
 
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Box sx={{ mt: 1 }}>
+          <Box sx={{ display: { xs: "none", md: "flex", alignItems: "center" } }}>
+            <Box>
               <SwicthLang />
+            </Box>
+            <Box>
+              <SwitchTheme />
             </Box>
             {showNotification(role) && <Notification />}
             <IconButton
