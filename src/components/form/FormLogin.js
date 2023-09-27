@@ -20,8 +20,9 @@ function FormLogin() {
   const validate = (field) => {
     const { email, password } = field;
     let err = { email: { state: false, message: "" }, password: { state: false, message: "" } };
-    if (email.length === 0) err.email = { state: true, message: "Field Required" };
-    if (password.length < 8) err.password = { state: true, message: "Input Minimum 8 character" };
+    if (email.length === 0) err.email = { state: true, message: <Trans i18nKey={"required"} /> };
+    if (password.length < 8)
+      err.password = { state: true, message: <Trans i18nKey={"form.error.password"} /> };
     setError(err);
     return Object.entries(err).every((v) => v[1].state === false);
   };
@@ -45,8 +46,13 @@ function FormLogin() {
         } else if (status === 401) {
           const isValid = data;
           let err = { email: false, password: false };
-          if (!isValid.email) err.email = { state: true, message: "Wrong Email" };
-          if (!isValid.password) err.password = { state: true, message: "Wrong Password" };
+          if (!isValid.email)
+            err.email = { state: true, message: <Trans i18nKey={"form.error.email_wrong"} /> };
+          if (!isValid.password)
+            err.password = {
+              state: true,
+              message: <Trans i18nKey={"form.error.password_wrong"} />,
+            };
           setError(err);
         }
       });
@@ -63,7 +69,7 @@ function FormLogin() {
       <Box sx={{ my: "1rem" }}>
         <TextField
           id="form-email"
-          label="Email"
+          label={<Trans i18nKey={"email"} />}
           error={error.email.state}
           helperText={error.email.message}
           name="email"
@@ -76,7 +82,7 @@ function FormLogin() {
       <Box sx={{ my: "1rem" }}>
         <TextField
           id="form-password"
-          label="Password"
+          label={<Trans i18nKey={"password"} />}
           name="password"
           error={error.password.state}
           helperText={error.password.message}

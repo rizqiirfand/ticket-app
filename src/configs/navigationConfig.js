@@ -16,7 +16,7 @@ const admin = [
 const guest = [
   {
     title: "Add Ticket",
-    link: "/tickets/add",
+    link: "/tickets",
     icon: <ConfirmationNumberRounded />,
   },
 ];

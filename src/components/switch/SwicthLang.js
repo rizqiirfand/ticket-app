@@ -28,7 +28,8 @@ function SwicthLang() {
   return (
     <div>
       <Button aria-describedby={id} variant="contained" onClick={handleClick}>
-        <Language />
+        {i18n.language}
+        <Language sx={{ ml: 1 }} />
       </Button>
       <Popover
         id={id}

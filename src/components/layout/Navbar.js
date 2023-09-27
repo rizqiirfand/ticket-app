@@ -97,6 +97,9 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
         </IconButton>
         <p>Logout</p>
       </MenuItem>
+      <MenuItem>
+        <SwicthLang />
+      </MenuItem>
     </Menu>
   );
 
@@ -125,7 +128,9 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <SwicthLang />
+            <Box sx={{ mt: 1 }}>
+              <SwicthLang />
+            </Box>
             {showNotification(role) && <Notification />}
             <IconButton
               size="large"

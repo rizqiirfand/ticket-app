@@ -18,6 +18,7 @@ import { navigation } from "../../configs/navigationConfig";
 import Icon from "@mui/material/Icon";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { Trans } from "react-i18next";
 
 const drawerWidth = 240;
 
@@ -42,7 +43,7 @@ function Layout(props) {
           <ListItem key={nav.title} disablePadding>
             <ListItemButton onClick={() => navigate(nav.link)}>
               <ListItemIcon sx={{ justifyContent: "center" }}>{nav.icon}</ListItemIcon>
-              <ListItemText primary={nav.title} />
+              <ListItemText primary={<Trans i18nKey={nav.title} />} />
             </ListItemButton>
           </ListItem>
         ))}

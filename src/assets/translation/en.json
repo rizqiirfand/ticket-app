@@ -1,5 +1,14 @@
 {
     "login":"Login into ticket app",
     "login.button":"Login",
-    "login.subtitle":"Enter your email and password below"
+    "login.subtitle":"Enter your email and password below",
+    "required":"Field Required",
+    "email":"Email",
+    "password":"Password",
+    "Overview":"Overview",
+    "Ticket":"Ticket",
+    "Add Ticket":"Add Ticket",
+    "form.error.password":"Input Minimum 8 character",
+    "form.error.email_wrong":"Wrong Email",
+    "form.error.password_wrong":"Wrong Password"
 }

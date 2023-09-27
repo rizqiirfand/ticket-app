@@ -1,5 +1,14 @@
 {
     "login":"Silahkan masuk ke aplikasi",
     "login.button":"Masuk",
-    "login.subtitle":"Silahkan masukkan email dan password"
+    "login.subtitle":"Silahkan masukkan email dan password",
+    "required":"Field Tidak boleh kosong",
+    "email":"Email",
+    "password":"Password",
+    "Overview":"Halaman Utama",
+    "Ticket":"Tiket",
+    "Add Ticket":"Buat Tiket",
+    "form.error.password":"Input Minimal 8 karakter",
+    "form.error.email_wrong":"Email Salah",
+    "form.error.password_wrong":"Password Salah"
 }
