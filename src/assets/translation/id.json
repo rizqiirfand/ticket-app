@@ -1,3 +1,5 @@
 {
-    "login":"masuk"
+    "login":"Silahkan masuk ke aplikasi",
+    "login.button":"Masuk",
+    "login.subtitle":"Silahkan masukkan email dan password"
 }

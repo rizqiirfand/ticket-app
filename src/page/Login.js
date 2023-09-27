@@ -6,6 +6,8 @@ import { Box } from "@mui/material";
 
 import Logo from "../components/logo/Logo";
 import FormLogin from "../components/form/FormLogin";
+import { Trans, useTranslation } from "react-i18next";
+import SwicthLang from "../components/switch/SwicthLang";
 
 export default function Login() {
   return (
@@ -20,14 +22,17 @@ export default function Login() {
       }}
     >
       <Card sx={{ width: "20rem", p: "1rem" }}>
+        <SwicthLang />
         <CardContent>
           <Logo />
           <Box sx={{ my: "1rem", textAlign: "center" }}>
             <Typography variant="h6">
-              <b>Login into ticket app</b>
+              <b>
+                <Trans i18nKey={"login"} />
+              </b>
             </Typography>
             <Typography variant="caption" sx={{ color: "grey.500" }}>
-              Enter your email and password below
+              <Trans i18nKey={"login.subtitle"} />
             </Typography>
           </Box>
           <FormLogin />

@@ -15,6 +15,7 @@ import Notification from "./Notification";
 import { useAuth } from "../../hooks/useAuth";
 import { Avatar } from "@mui/material";
 import { showNotification } from "../../utils/Permission";
+import SwicthLang from "../switch/SwicthLang";
 
 function Navbar({ drawerWidth, handleDrawerToggle }) {
   const { role, avatar, logout } = useAuth();
@@ -124,6 +125,7 @@ function Navbar({ drawerWidth, handleDrawerToggle }) {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <SwicthLang />
             {showNotification(role) && <Notification />}
             <IconButton
               size="large"

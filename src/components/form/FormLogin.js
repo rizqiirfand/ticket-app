@@ -3,6 +3,7 @@ import { VisibilityOff, Visibility } from "@mui/icons-material";
 import React from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { Trans } from "react-i18next";
 
 function FormLogin() {
   const { loginWithEmail, authLoad } = useAuth();
@@ -99,7 +100,7 @@ function FormLogin() {
       </Box>
       <Box sx={{ mt: "3rem", textAlign: "right" }}>
         <Button variant="contained" type="submit" disabled={authLoad}>
-          {authLoad ? <CircularProgress size={20} /> : "Login"}
+          {authLoad ? <CircularProgress size={20} /> : <Trans i18nKey={"login.button"} />}
         </Button>
       </Box>
     </form>
